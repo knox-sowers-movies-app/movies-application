@@ -52,8 +52,6 @@ const addMovie = async (movie) => {
         return null;
     }
 };
-// addMovie();
-getMoviesAPI("the ring");
 
 //Function to delete movie
 const deleteMovie = async (id) => {
