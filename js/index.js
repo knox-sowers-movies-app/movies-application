@@ -1,4 +1,4 @@
-import {getMoviesAPI} from "./movie-functs/movie-functions.js"
+import {getMoviesAPI, getMoviesDB} from "./movie-functs/movie-functions.js"
 
 // TODO: Example for use of website API
 
@@ -19,7 +19,7 @@ import {getMoviesAPI} from "./movie-functs/movie-functions.js"
 //TODO: Functions needed to make:
 
 // 1. SearchMovies: To find movies in the API ✓
-// 2. getMovie: To grab a certain movie from our search and add it to our "Favorites" DB
+// 2. getMovie: To grab a certain movie from our search and add it to our "Favorites" DB ✓
 // 3. removeMovie: To remove a movie from our DB
 // 4. editRating: To edit their personal rating on the movie
 // 5. populateCard: To generate a card when search results come through
@@ -27,20 +27,11 @@ import {getMoviesAPI} from "./movie-functs/movie-functions.js"
 
 (async() => {
 
+    const removeMovie = async () => {
 
-    const getMoviesDB = async (title) => {
-        const url = `http://localhost:3000/movies?title=${title}`;
-        const options = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-        const response = await fetch(url, options);
-        const movies = await response.json();
-        return movies;
-    };
+    }
 
-    getMoviesDB('Shrek');
+    // getMoviesAPI("Shrek");
+    // getMoviesDB("Shrek");
 
 })();
