@@ -1,4 +1,4 @@
-import {getMoviesAPI, getMoviesDB} from "./movie-functs/movie-functions.js"
+import {getMoviesAPI, getMoviesDB, addMovie, deleteMovie, patchMovie} from "./movie-functs/movie-functions.js"
 
 // TODO: Example for use of website API
 
