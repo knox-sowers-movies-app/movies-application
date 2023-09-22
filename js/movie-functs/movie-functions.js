@@ -26,7 +26,8 @@ const getMoviesDB = async (title) => {
     };
     const res = await fetch(url, options);
     const movies = await res.json();
-    return console.log(movies);
+    console.log(movies);
+    return movies;
 };
 
 //Function to post movie
