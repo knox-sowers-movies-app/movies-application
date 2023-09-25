@@ -5,11 +5,30 @@
       "title": "Shrek",
       "icon": 5,
       "overview": "It ain't easy bein' green -- especially if you're a likable (albeit smelly) ogre named Shrek. On a mission to retrieve a gorgeous princess from the clutches of a fire-breathing dragon, Shrek teams up with an unlikely compatriot -- a wisecracking donkey.",
-      "genre_ids": [16, 35, 14, 12, 10751],
+      "genre_ids": [
+        16,
+        35,
+        14,
+        12,
+        10751
+      ],
       "vote_average": 7.73,
       "my_rating": 10,
       "release_date": "2001-05-18"
+    },
+    {
+      "title": "The Godfather",
+      "release_date": "Year: 1972-03-14",
+      "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
+      "vote_average": 8.7,
+      "id": 5
+    },
+    {
+      "title": "Spirited Away",
+      "release_date": "Year: 2001-07-20",
+      "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+      "vote_average": 8.5,
+      "id": 6
     }
   ]
 }
-

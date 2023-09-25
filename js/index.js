@@ -1,101 +1,48 @@
-import {getMoviesAPI, getMoviesDB, addMovie, deleteMovie, patchMovie} from "./movie-functs/movie-functions.js"
+import {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves} from "./movie-functs/movie-functions.js"
 import {movieKey} from "./keys.js";
 
 //TODO: Functions are done, so now we have to:
 
-// 1. Must make our const to produce cards that are shown in our favorites
-// 2. Must make our const that will show randomly generated cards in our other section
-// 3. Make our main function call necessary parts
-// 4. CSS/Style our site more
+// 1. Have to add: edit button
+// 2. Make website look nice with CSS
 
-//This function makes the cards already in our DB, still need a function to call our cards, this will go into the async section
-const renderMovie = (movies, favorite) => {
-    const modal = document.createElement("div");
-    modal.classList.add('modal');
-    modal.innerHTML = `            <article class="fav-card">
-                <h3 class="movie-title">${movies[0].title}</h3>
-                <p class="movie-year">Year: ${movies[0].release_date}</p>
-                <p class="movie-description">${movies[0].overview}</p>
-                <div class="d-flex align-items-center justify-content-between">
-                    <span>My Rating:</span>
-                    <span class="personal-card-rating"></span>
-                </div>
-                <span>Average Rating:</span>
-                <meter class="movie-meter" min="0" max="10" value="4"></meter>
-                <div class="d-flex, align-items-center justify-content-start">
-                ${renderGenres(movies[0].genre_ids[0])}
-                </div>
-            </article>
-        ` }
-
-const renderGenres = (genre) => {
-    const genreHTML = genre.map((genre) => `<span class="movie-card-tag">${movies[0].genre_id[0]}</span>`).join("");
-    return genreHTML;
+//Loader | Needs work
+document.documentElement.onload =function (){
+    document.getElementById('loader').style.display ='block';
+};
+window.onload= function (){
+    document.getElementById('loader').style.display='none';
 };
 
+//MAIN FUNCTION//
 (async() => {
-    const movies = await getMoviesDB();
-    for (let movie of movies) {
-        const target = document.querySelector(".movie-grid");
-        renderMovie(movie, target);
-    }
+    // This loop calls our card render function **for each** one that is listed as Top 20
+    const movies = await getTop20();
+    movies.results.forEach(movie => {
+        const target = document.getElementById("movie-grid")
+        renderTop20(movie, "fav-card");
+    })
+
+    // This loop calls our card render function for our database movies ***for each*** one that is in our database.
+    const faves = await getMoviesDB();
+    console.log(faves.results);
+    faves.forEach(movie => {
+        const target = document.getElementById('fav-grid')
+        renderFaves(movie, "fav-card");
+    })
+
+    // Delete button programming: This will take in the id from the hidden input from render movies and then after take that id and use it to delete from movies.json
+    const deleteButton = document.getElementsByClassName('delete-button');
+   for(let button of deleteButton) {
+       button.addEventListener ("click", async (event)=>{
+       const movieID = event.target.previousElementSibling.value
+       const deletedFave = deleteMovie(movieID);
+       const favGrid = document.getElementById('fav-grid')
+       favGrid.replaceChildren();
+       const faves = await getMoviesDB();
+       faves.forEach(movie => {
+           renderFaves(movie, "fav-card");
+       });
+    })}
+
 })();
-
-
-
-
-
-//
-// const api_key = 'api_key=48f68dcd82cc8a35116e0848fdceaeb6';
-// const base_url = 'https://api.themoviedb.org/3';
-// const api_url = base_url + '/discover/movie?sort_by=popularity.desc&' + api_key;
-// const img_url = 'https://image.tmbd.org/t/p/500';
-//
-// const main = document.getElementById('main');
-//
-// getMovies(api_url);
-// async function getMovies(url) {
-//     fetch(url).then(res => res.json()).then(data => {
-//         // console.log(data);
-//         showMovies(data);
-//     })
-// }
-// let data1 = getMoviesAPI().value
-// function showMovies(data) {
-//     main.innerHTML = "";
-//
-//     data.foreach(movie => {
-//         const {title, poster_path, vote_average, overview, release_date}= movie;
-//         const movieEl = document.createElement('div');
-//         movie.classlist.add('movie');
-//         movieEl.innerHTML = `
-//        <h3 class="movie-title">${title}}</h3>
-//        <img src="${img_url + poster_path}" alt="${title}}
-//         <p class="movie-year">${release_date}</p>
-//         <p class="movie-description">${overview}</p>
-//         <div class="d-flex align-items-center justify-content-between">
-//         <span>My Rating:</span>
-//         <span class="personal-card-rating ${getColor(vote_average)}">${vote_average}</span>
-//         </div>
-//         <meter class="movie-meter" min="0" max="10" value="4"></meter>
-//         <div class="d-flex, align-items-center justify-content-start">
-//         <div class="movie-genre-tag">${genre_ids}</div>
-//         </div>
-//
-//         `
-//
-//         console.log(movieEl);
-//         main.appendChild(movieEl);
-//
-//     })
-// }
-//
-// function getColor(vote) {
-//     if(vote >= 8) {
-//         return 'green';
-//     } else if (vote >= 5) {
-//         return 'orange';
-//     } else {
-//         return 'red';
-//     }
-// }

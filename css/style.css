@@ -5,11 +5,11 @@
 /*font-family: 'Quattrocento Sans', sans-serif;*/
 
 :root {
-    --text: #000000;
-    --background: #ffffff;
-    --primary: #d1667b;
-    --secondary: #f2ddd4;
-    --accent: #c03998;
+    --text: #1f1414;
+    --background: #f7f7f7;
+    --primary: #b1b6c8;
+    --secondary: #e8e1de;
+    --accent: #8d5e5e;
 }
 
 body {
@@ -37,12 +37,21 @@ nav img {
     padding: 40px;
 }
 
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+}
 
 .page-wrapper h2 {
     font-family: 'Kanit', sans-serif;
     color: var(--primary);
     font-size: 50px;
     text-indent: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
 }
 
 nav button {
@@ -66,17 +75,29 @@ button:hover {
 }
 .fav-card {
     width: 300px;
-    height: 400px;
-    background-color: var(--primary);
+    height: 490px;
+    background-image: linear-gradient(#f5f0f0, var(--secondary));
     color: var(--text);
     border-radius: 20px;
     padding: 20px;
+    transition: 0.8s;
+}
+
+.fav-card:hover {
+    width: 330px;
+    height: 510px;
+    box-shadow: 0 0 10px 5px var(--secondary);
 }
 
 .fav-card h3 {
     font-family: 'Kanit', sans-serif;
-    color: var(--background);
+    color: var(--accent);
     font-size: 30px;
+    transition: 0.5s;
+}
+
+.fav-card h3:hover {
+    font-size: 35px;
 }
 
 .fav-card p {
