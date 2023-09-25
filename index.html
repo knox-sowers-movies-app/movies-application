@@ -6,38 +6,36 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Movie App</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="./images/icons8-movie-50.png">
+    <script type="module" src="./js/index.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+<div id="loader">
+    <img src="./images/25.svg" alt="loader">
+</div>
 <div class="page-wrapper">
     <nav>
-        <img src="images/icons8-movie-50.png" alt="movie icon">
+        <img src="./images/icons8-movie-50.png" alt="movie icon">
 
         <h1>Movie App!</h1>
-
         <button type="button">Main</button>
         <button type="button">My Favorites</button>
     </nav>
-    <h2>Your Favorites</h2>
-    <section class="container">
-        <div class="movie-grid">
-        <article class="fav-card">
-        <h3 class="movie-title">Movie Name</h3>
-        <p class="movie-year">Year:</p>
-        <p class="movie-description"></p>
-        <div class="d-flex align-items-center justify-content-between">
-        <span>My Rating:</span>
-        <span class="personal-card-rating"></span>
-        </div>
-        <meter class="movie-meter" min="0" max="10" value="4"></meter>
-        <div class="d-flex, align-items-center justify-content-start">
-        <div class="movie-genre-tag">Horror</div>
-        <div class="movie-genre-tag">Drama</div>
-        </div>
-        </article>
-        </div>
-    </section>
+    <div class="top-movies-favorites-container">
+        <section class="container-top-movies">
+            <h2>Top Movies</h2>
+            <div id="movie-grid" style="display:flex; flex-wrap: wrap; justify-content: space-around; gap: 25px;">
+
+            </div>
+        </section>
+        <section class="container-favorites">
+            <h2>Favorites</h2>
+            <div id="fav-grid" style="display:flex; flex-wrap: wrap; justify-content: space-around; gap: 25px;">
+
+            </div>
+        </section>
+    </div>
 </div>
-    <script type="module" src="js/index.js"></script>
 </body>
 </html>
