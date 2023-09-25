@@ -29,6 +29,20 @@ const getMoviesDB = async () => {
     return movies;
 };
 
+//Gets the ID?
+const getMoviesDBId = async (id) => {
+    const url = `http://localhost:3000/movies?${id}`;
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    const res = await fetch(url, options);
+    const movies = await res.json();
+    return movies;
+};
+
 //Function to post movie
 const addMovie = async (movie) => {
     try {
@@ -102,6 +116,62 @@ const getTop20 = async () => {
     return movies;
 };
 
+//This is a function that will render the top 20 cards
+const renderTop20 = (movies, type) => {
+    const modal = document.createElement("div");
+    modal.classList.add('modal');
+    modal.innerHTML = `            <article class="${type}">
+                <h3 class="movie-title">${movies.title}</h3>
+                <p class="movie-year">Year: ${movies.release_date}</p>
+                <p class="movie-description">${movies.overview}</p>
+                <span>Average Rating:</span>
+                <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
+                <button class="add-movie-button">Add Movie</button>
+            </article>
+        `
+    //Calling the cards specifically to the div we want in it.
+    const movieGrid = document.getElementById('movie-grid')
+    movieGrid.appendChild(modal)
 
-export {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20}
+    // Add button programming: This will pull the individual values from the buttons and then adding them as variables to the object variable to be stored in movies.json
+    const addButton = modal.querySelector('button');
+        addButton.addEventListener('click',  async(event) => {
+            let title = modal.querySelector('.movie-title').innerHTML
+            let year = modal.querySelector('.movie-year').innerHTML
+            let description = modal.querySelector('.movie-description').innerHTML
+            let rating = modal.querySelector('.movie-meter').value
+            console.log(title);
+            let obj = await addMovie({
+        title: title,
+        release_date: year,
+        overview: description,
+        vote_average: rating,
+    });
+        })
+};
+
+// This is a function that will render the favorites we've added to movies.json
+const renderFaves = (movies, type) => {
+    const favGrid = document.getElementById('fav-grid')
+    const modal = document.createElement("div");
+    modal.classList.add('modal');
+    modal.innerHTML = `            <article class="${type}">
+                <h3 class="movie-title">${movies.title}</h3>
+                <p class="movie-year">Year: ${movies.release_date}</p>
+                <p class="movie-description">${movies.overview}</p>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span>My Rating:</span>
+                    <span class="personal-card-rating"></span>
+                </div>
+                <span>Average Rating:</span>
+                <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
+                <input class="id-input" type="hidden" value="${movies.id}">
+                <button class="delete-button" >Delete</button>
+            </article>
+        `
+    //Calling the cards specifically to the div we want in it
+    favGrid.appendChild(modal)
+};
+
+export {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves}
 

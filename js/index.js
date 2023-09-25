@@ -1,63 +1,12 @@
-import {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20} from "./movie-functs/movie-functions.js"
+import {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves} from "./movie-functs/movie-functions.js"
 import {movieKey} from "./keys.js";
 
 //TODO: Functions are done, so now we have to:
 
-// 1. Have to add: Add button, Delete button, and edit button
-// 2. search function to search through movies
-// 3. Make website look nice with CSS
+// 1. Have to add: edit button
+// 2. Make website look nice with CSS
 
-//This is a function that will render the top 20 cards
-const renderTop20 = (movies, type) => {
-    const modal = document.createElement("div");
-    modal.classList.add('modal');
-    modal.innerHTML = `            <article class="${type}">
-                <h3 class="movie-title">${movies.title}</h3>
-                <p class="movie-year">Year: ${movies.release_date}</p>
-                <p class="movie-description">${movies.overview}</p>
-                <span>Average Rating:</span>
-                <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
-                <button class="add-movie-button">Add Movie</button>
-            </article>
-        `
-    //Calling the cards specifically to the div we want in it.
-    const movieGrid = document.getElementById('movie-grid')
-    movieGrid.appendChild(modal)
-};
-
-// This is a function that will render the favorites we've added to movies.json
-const renderFavs = (movies, type) => {
-    const modal = document.createElement("div");
-    modal.classList.add('modal');
-    modal.innerHTML = `            <article class="${type}">
-                <h3 class="movie-title">${movies.title}</h3>
-                <p class="movie-year">Year: ${movies.release_date}</p>
-                <p class="movie-description">${movies.overview}</p>
-                <div class="d-flex align-items-center justify-content-between">
-                    <span>My Rating:</span>
-                    <span class="personal-card-rating"></span>
-                </div>
-                <span>Average Rating:</span>
-                <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
-                <button class="delete-button">Delete</button>
-            </article>
-        `
-    //Calling the cards specifically to the div we want in it.
-    const favGrid = document.getElementById('fav-grid')
-    favGrid.appendChild(modal)
-};
-
-const grabId = () =>{
-
-}
-
-
-const deleteButton = document.getElementsByClassName('delete-button');
-deleteButton.addEventListener ("Click", ()=>{
-
-})
-
-//Loader
+//Loader | Needs work
 document.documentElement.onload =function (){
     document.getElementById('loader').style.display ='block';
 };
@@ -79,8 +28,21 @@ window.onload= function (){
     console.log(faves.results);
     faves.forEach(movie => {
         const target = document.getElementById('fav-grid')
-        renderFavs(movie, "fav-card");
+        renderFaves(movie, "fav-card");
     })
 
+    // Delete button programming: This will take in the id from the hidden input from render movies and then after take that id and use it to delete from movies.json
+    const deleteButton = document.getElementsByClassName('delete-button');
+   for(let button of deleteButton) {
+       button.addEventListener ("click", async (event)=>{
+       const movieID = event.target.previousElementSibling.value
+       const deletedFave = deleteMovie(movieID);
+       const favGrid = document.getElementById('fav-grid')
+       favGrid.replaceChildren();
+       const faves = await getMoviesDB();
+       faves.forEach(movie => {
+           renderFaves(movie, "fav-card");
+       });
+    })}
 
 })();

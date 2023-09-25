@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<!--All stylesheets and scripts are linked.-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,26 +13,30 @@
 </head>
 <body>
 <div id="loader">
+    <!--This is the movie icon in tab-->
     <img src="./images/25.svg" alt="loader">
 </div>
 <div class="page-wrapper">
+    <!--This is the navigation bar-->
     <nav>
+        <!--In here is stored the movie icon image and the two buttons with the page title-->
         <img src="./images/icons8-movie-50.png" alt="movie icon">
-
         <h1>Movie App!</h1>
         <button type="button">Main</button>
         <button type="button">My Favorites</button>
     </nav>
+    <!--This section is where the favorited movies will be populated.-->
+    <section class="container-favorites">
+        <h2>Favorites</h2>
+        <div id="fav-grid" style="display:flex; flex-wrap: wrap; justify-content: space-around; gap: 25px;">
+
+        </div>
+    </section>
+    <!--This section is where The top movies are populated.-->
     <div class="top-movies-favorites-container">
         <section class="container-top-movies">
             <h2>Top Movies</h2>
             <div id="movie-grid" style="display:flex; flex-wrap: wrap; justify-content: space-around; gap: 25px;">
-
-            </div>
-        </section>
-        <section class="container-favorites">
-            <h2>Favorites</h2>
-            <div id="fav-grid" style="display:flex; flex-wrap: wrap; justify-content: space-around; gap: 25px;">
 
             </div>
         </section>
