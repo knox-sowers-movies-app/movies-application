@@ -167,11 +167,19 @@ const renderFaves = (movies, type) => {
                 <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
                 <input class="id-input" type="hidden" value="${movies.id}">
                 <button class="delete-button" >Delete</button>
+                <button class="edit-button">Edit Rating</button>
             </article>
         `
     //Calling the cards specifically to the div we want in it
     favGrid.appendChild(modal)
 };
+
+const editRating = document.querySelector('.edit-button');
+    editRating.addEventListener('click', () {
+        prompt()
+})
+
+}
 
 export {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves}
 
