@@ -172,14 +172,18 @@ const renderFaves = (movies, type) => {
         `
     //Calling the cards specifically to the div we want in it
     favGrid.appendChild(modal)
-};
 
-const editRating = document.querySelector('.edit-button');
-    editRating.addEventListener('click', () {
-        prompt()
-})
-
+    const editRating = modal.querySelector('.edit-button');
+    console.log(editRating);
+    editRating.addEventListener('click', (e) => {
+    prompt('' +
+            'Enter your movie rating between 1 and 10 which may include on decimal point such as 7.8...');
+    })
+    let user_rating = {
+    'my_rating': prompt};
 }
+
+
 
 export {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves}
 
