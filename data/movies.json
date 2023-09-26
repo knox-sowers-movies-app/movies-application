@@ -1,34 +1,28 @@
 {
   "movies": [
     {
-      "id": 1,
-      "title": "Shrek",
-      "icon": 5,
-      "overview": "It ain't easy bein' green -- especially if you're a likable (albeit smelly) ogre named Shrek. On a mission to retrieve a gorgeous princess from the clutches of a fire-breathing dragon, Shrek teams up with an unlikely compatriot -- a wisecracking donkey.",
-      "genre_ids": [
-        16,
-        35,
-        14,
-        12,
-        10751
-      ],
-      "vote_average": 7.73,
-      "my_rating": 10,
-      "release_date": "2001-05-18"
-    },
-    {
-      "title": "The Godfather",
-      "release_date": "Year: 1972-03-14",
-      "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
-      "vote_average": 8.7,
-      "id": 5
-    },
-    {
-      "title": "Spirited Away",
-      "release_date": "Year: 2001-07-20",
-      "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+      "title": "The Green Mile",
+      "release_date": "Year: 1999-12-10",
+      "overview": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.",
       "vote_average": 8.5,
-      "id": 6
+      "my_rating": 0,
+      "id": 2
+    },
+    {
+      "title": "The Shawshank Redemption",
+      "release_date": "Year: 1994-09-23",
+      "overview": "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
+      "vote_average": 8.7,
+      "my_rating": "7",
+      "id": 3
+    },
+    {
+      "title": "The Green Mile",
+      "release_date": "Year: 1999-12-10",
+      "overview": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.",
+      "vote_average": 8.5,
+      "my_rating": 0,
+      "id": 4
     }
   ]
 }

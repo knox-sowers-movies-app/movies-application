@@ -7,11 +7,14 @@ import {movieKey} from "./keys.js";
 // 2. Make website look nice with CSS
 
 //Loader | Needs work
-document.documentElement.onload =function (){
-    document.getElementById('loader').style.display ='block';
-};
-window.onload= function (){
-    document.getElementById('loader').style.display='none';
+document.onreadystatechange = function () {
+    if (document.readyState !== 'complete') {
+        document.querySelector('body').style.visibility='hidden';
+        document.querySelector('#loader').style.visibility='visible';
+    } else {
+        document.querySelector('#loader').style.display='none';
+        document.querySelector('body').style.visibility='visible';
+    }
 };
 
 //MAIN FUNCTION//
@@ -30,19 +33,5 @@ window.onload= function (){
         const target = document.getElementById('fav-grid')
         renderFaves(movie, "fav-card");
     })
-
-    // Delete button programming: This will take in the id from the hidden input from render movies and then after take that id and use it to delete from movies.json
-    const deleteButton = document.getElementsByClassName('delete-button');
-   for(let button of deleteButton) {
-       button.addEventListener ("click", async (event)=>{
-       const movieID = event.target.previousElementSibling.value
-       const deletedFave = deleteMovie(movieID);
-       const favGrid = document.getElementById('fav-grid')
-       favGrid.replaceChildren();
-       const faves = await getMoviesDB();
-       faves.forEach(movie => {
-           renderFaves(movie, "fav-card");
-       });
-    })}
 
 })();

@@ -54,7 +54,7 @@ nav img {
     flex-direction: row;
 }
 
-nav button {
+button {
     width: 150px;
     height: 40px;
     border-style: none;
@@ -62,7 +62,7 @@ nav button {
     border-radius: 20px;
     font-family: 'Quattrocento Sans', sans-serif;
     color: var(--text);
-    background-color: var(--primary);
+    background-color: #FFFFFF;
     margin-left: 20px;
     text-transform: uppercase;
     transition: 0.8s;
