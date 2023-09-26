@@ -1,13 +1,6 @@
 import {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves} from "./movie-functs/movie-functions.js"
 import {movieKey} from "./keys.js";
 
-//TODO: Functions are done, so now we have to:
-
-// 1. Have to add: edit button
-// 2. Make website look nice with CSS
-
-
-
 const targetTop20Grid = document.getElementById('movie-grid');
 //MAIN FUNCTION//
 (async() => {
@@ -30,12 +23,6 @@ const targetTop20Grid = document.getElementById('movie-grid');
     })
     }, interval);
 
-
-
-
-
-
-
     //This loop calls our card render function for our database movies ***for each*** one that is in our database.
     const faves = await getMoviesDB();
     console.log(faves.results);
@@ -45,3 +32,14 @@ const targetTop20Grid = document.getElementById('movie-grid');
     })
 
 })();
+
+// TODO Refactoring ideas:
+
+// > Carousel the favorite movies for easier access when the .json get larger
+// > refactor how the cards look, could look cleaner
+// > Add the movie poster on card for cleaner cards
+// > More "movie" type colors
+// > Style the loading view a bit more
+// > refactor site to have a search box/query for our favorites
+// > Add a form input for adding a movie completely from scratch
+// > Make a function to re-render the cards rather than constantly re-making the foreach loop in each function.
