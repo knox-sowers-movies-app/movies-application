@@ -10,32 +10,6 @@
     <link rel="icon" type="image/x-icon" href="./images/icons8-movie-50.png">
     <script type="module" src="./js/index.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
-    <style>
-        #loader {
-            border: 12px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 12px solid #444444;
-            width: 70px;
-            height: 70px;
-            animation: spin 1s linear infinite;
-        }
-
-        .center {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-    </style>
 </head>
 <body>
 <div id="page-wrapper" class="page-wrapper">
@@ -46,6 +20,13 @@
         <h1>Movie App!</h1>
         <button type="button">Main</button>
         <button type="button">My Favorites</button>
+        <div class="login-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Username" name="username">
+                <input type="text" placeholder="Password" name="psw">
+                <button type="submit" disabled>Login</button>
+            </form>
+        </div>
     </nav>
     <!--This section is where the favorited movies will be populated.-->
     <section class="container-favorites">

@@ -37,6 +37,14 @@ nav img {
     padding: 40px;
 }
 
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-right: 5px;
+    margin-left: auto;
+}
+
 .page-wrapper {
     display: flex;
     flex-direction: column;
@@ -73,6 +81,12 @@ button:hover {
     box-shadow: 0 0 9px 0 var(--accent);
     color: #FFF;
 }
+
+button:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 .fav-card {
     width: 300px;
     height: 490px;
