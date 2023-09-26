@@ -113,7 +113,6 @@ const getTop20 = async () => {
     };
     const res = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
     const movies =  await res.json();
-    console.log(movies);
     return movies;
 };
 
@@ -186,7 +185,7 @@ const renderFaves = (movies, type) => {
     // Delete button programming: This will take in the id from the hidden input from render movies and then after take that id and use it to delete from movies.json
     const deleteButton = modal.querySelector('.delete-button');
     deleteButton.addEventListener('click', e => {
-        const movieID = e.target.previousElementSibling.value
+        const movieID = modal.querySelector('.id-input').value;
         deleteMovie(movieID).then(() =>{
             const favGrid = document.getElementById('fav-grid')
             favGrid.replaceChildren();
@@ -199,6 +198,7 @@ const renderFaves = (movies, type) => {
         })
     });
 
+    // Edit button will PATCH a part of the movies.json and
     const editRating = modal.querySelector('.edit-button');
     editRating.addEventListener('click', (e) => {
         let user_rating = prompt('' +
