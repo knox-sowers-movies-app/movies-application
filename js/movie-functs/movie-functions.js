@@ -1,5 +1,6 @@
 import {movieKey} from "../keys.js";
 
+
 // Function to search the API database for a movie based on title
 const getMovieSearch = async (query) => {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${movieKey}&language=en-US&query=${query}&page=1&include_adult=false`;
@@ -82,16 +83,15 @@ const deleteMovie = async (id) => {
 };
 
 //Function to Edit
-const patchMovie = async (movie) => {
+const patchMovie = async (movie, user_rating) => {
     try {
-        const url = `http://localhost:3000/books/${book.id}`;
-        const body = movie;
+        const url = `http://localhost:3000/movies/${movie}`;
         const options = {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify(user_rating)
         };
         const response = await fetch(url, options);
         const newId = await response.json();
@@ -118,6 +118,7 @@ const getTop20 = async () => {
 
 //This is a function that will render the top 20 cards
 const renderTop20 = (movies, type) => {
+    const favGrid = document.getElementById('fav-grid');
     const modal = document.createElement("div");
     modal.classList.add('modal');
     modal.innerHTML = `            <article class="${type}">
@@ -136,17 +137,24 @@ const renderTop20 = (movies, type) => {
     // Add button programming: This will pull the individual values from the buttons and then adding them as variables to the object variable to be stored in movies.json
     const addButton = modal.querySelector('button');
         addButton.addEventListener('click',  async(event) => {
+            favGrid.innerHTML="";
             let title = modal.querySelector('.movie-title').innerHTML
             let year = modal.querySelector('.movie-year').innerHTML
             let description = modal.querySelector('.movie-description').innerHTML
             let rating = modal.querySelector('.movie-meter').value
             console.log(title);
             let obj = await addMovie({
-        title: title,
-        release_date: year,
-        overview: description,
-        vote_average: rating,
+                title: title,
+                release_date: year,
+                overview: description,
+                vote_average: rating,
+                my_rating: 0,
     });
+           getMoviesDB().then(faves =>{
+               faves.forEach(movie => {
+                   renderFaves(movie, "fav-card");
+               });
+           })
         })
 };
 
@@ -161,7 +169,7 @@ const renderFaves = (movies, type) => {
                 <p class="movie-description">${movies.overview}</p>
                 <div class="d-flex align-items-center justify-content-between">
                     <span>My Rating:</span>
-                    <span class="personal-card-rating"></span>
+                    <span class="personal-card-rating"><meter class="movie-meter" min="0" max="10" value="${movies.my_rating}"></meter></span>
                 </div>
                 <span>Average Rating:</span>
                 <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
@@ -173,17 +181,40 @@ const renderFaves = (movies, type) => {
     //Calling the cards specifically to the div we want in it
     favGrid.appendChild(modal)
 
+    // Delete button programming: This will take in the id from the hidden input from render movies and then after take that id and use it to delete from movies.json
+    const deleteButton = modal.querySelector('.delete-button');
+    deleteButton.addEventListener('click', e => {
+        const movieID = e.target.previousElementSibling.value
+        deleteMovie(movieID).then(() =>{
+            const favGrid = document.getElementById('fav-grid')
+            favGrid.replaceChildren();
+            favGrid.innerHTML = "";
+            getMoviesDB().then(faves => {
+                faves.forEach(movie => {
+                    renderFaves(movie, "fav-card");
+                })
+            });
+        })
+    });
+
     const editRating = modal.querySelector('.edit-button');
-    console.log(editRating);
     editRating.addEventListener('click', (e) => {
-    prompt('' +
+        let user_rating = prompt('' +
             'Enter your movie rating between 1 and 10 which may include on decimal point such as 7.8...');
+        const data = {
+                        my_rating: user_rating,
+                    };
+        patchMovie(movies.id, data).then(() => {
+            favGrid.innerHTML="";
+            getMoviesDB().then(faves =>{
+                faves.forEach(movie => {
+                    renderFaves(movie, "fav-card");
+                });
+            })
+        })
     })
-    let user_rating = {
-    'my_rating': prompt};
+
 }
-
-
 
 export {getMovieSearch, getMoviesDB, addMovie, deleteMovie, patchMovie, getTop20, getMoviesDBId, renderTop20, renderFaves}
 

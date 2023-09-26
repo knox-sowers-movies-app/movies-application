@@ -13,22 +13,16 @@
         10751
       ],
       "vote_average": 7.73,
-      "my_rating": 10,
+      "my_rating": "10",
       "release_date": "2001-05-18"
     },
     {
-      "title": "The Godfather",
-      "release_date": "Year: 1972-03-14",
-      "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
-      "vote_average": 8.7,
-      "id": 5
-    },
-    {
-      "title": "Spirited Away",
-      "release_date": "Year: 2001-07-20",
-      "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+      "title": "The Green Mile",
+      "release_date": "Year: 1999-12-10",
+      "overview": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.",
       "vote_average": 8.5,
-      "id": 6
+      "my_rating": 0,
+      "id": 2
     }
   ]
 }
