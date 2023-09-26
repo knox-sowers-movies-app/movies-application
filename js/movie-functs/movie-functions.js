@@ -113,6 +113,7 @@ const getTop20 = async () => {
     };
     const res = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
     const movies =  await res.json();
+    console.log(movies);
     return movies;
 };
 
@@ -160,6 +161,7 @@ const renderTop20 = (movies, type) => {
 
 // This is a function that will render the favorites we've added to movies.json
 const renderFaves = (movies, type) => {
+
     const favGrid = document.getElementById('fav-grid')
     const modal = document.createElement("div");
     modal.classList.add('modal');
@@ -173,7 +175,7 @@ const renderFaves = (movies, type) => {
                 </div>
                 <span>Average Rating:</span>
                 <meter class="movie-meter" min="0" max="10" value="${movies.vote_average}"></meter><br>
-                <input class="id-input" type="hidden" value="${movies.id}">
+                <input class="id-input" type="hidden" value="${movies.id}"><br>
                 <button class="delete-button" >Delete</button>
                 <button class="edit-button">Edit Rating</button>
             </article>
